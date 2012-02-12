@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     chdir("/");
 
     /* close all open file descriptors */
-    for(i=getdtablesize(); i>=0; i--) {
+    for(i=sysconf(_SC_OPEN_MAX); i>=0; i--) {
         /* no error checks because we don't care if a file was already closed */
         close(i);
     }
