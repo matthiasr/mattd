@@ -1,3 +1,7 @@
 mattd implementation in plain C
 
-This is a port of mattd <https://github.com/ralphbean/mattd> to plain C as well as an exercise in writing a UNIX daemon.
+This is exercise in writing a UNIX daemon. Heavily inspired by mattd <https://github.com/ralphbean/mattd>, but written from scratch with a little help from:
+
+http://www.enderunix.org/docs/eng/daemon.php
+http://www.netzmafia.de/skripten/unix/linux-daemon-howto.html
+http://cjh.polyplex.org/software/daemon.pdf
