@@ -32,7 +32,8 @@ int main(int argc, char** argv) {
     long i;
 
     if (getppid()!=1) {
-        /* create a child process so the parent can return control to the shell */
+        /* create a child process so the parent can return control to the shell
+         * */
         id = fork();
         /* error check */
         if (id < 0) {
@@ -52,14 +53,15 @@ int main(int argc, char** argv) {
             exit(EXIT_FAILURE);
         }
 
-        /* ignore SIGHUP so the second child (see below) won't be killed when the parent exits.
-         * The exiting parent may send a SIGHUP to the child, but that will inherit this setting
-         * and continue anyway. */
+        /* ignore SIGHUP so the second child (see below) won't be killed when
+         * the parent exits.  The exiting parent may send a SIGHUP to the child,
+         * but that will inherit this setting and continue anyway. */
         signal(SIGHUP, SIG_IGN);
 
-        /* fork&exit again, so the daemon process is orphaned and will not become a zombie process.
-         * Also, this prevents the daemon from reacquiring the terminal which would have weird side-
-         * effects on System V style UNIX.*/
+        /* fork&exit again, so the daemon process is orphaned and will not
+         * become a zombie process.  Also, this prevents the daemon from
+         * reacquiring the terminal which would have weird side- effects on
+         * System V style UNIX. */
         id = fork();
         if (id < 0) {
             perror(argv[0]);
@@ -82,10 +84,11 @@ int main(int argc, char** argv) {
         close(i);
     }
 
-    /* we just closed stdin, stdout, stderr.
-     * to prevent failure if we accidentally try to use them, re-open them on /dev/null */
+    /* we just closed stdin, stdout, stderr. to prevent failure if we
+     * accidentally try to use them, re-open them on /dev/null */
     i = open("/dev/null", O_RDWR);
-    /* this is guaranteed by POSIX semantics as we just closed all file descriptors */
+    /* this is guaranteed by POSIX semantics as we just closed all file
+     * descriptors */
     assert(i==STDIN_FILENO);
     /* duplicate the opened descriptor to stdout and stderr */
     dup2(STDIN_FILENO, STDOUT_FILENO);
