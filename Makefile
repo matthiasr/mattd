@@ -1,8 +1,8 @@
-all: daemon
+all: mattd
 
-daemon: daemon.c
+mattd: mattd.c
 
 .PHONY: clean
 
 clean:
-	rm -f *.o daemon
+	rm -f *.o mattd
