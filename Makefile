@@ -10,4 +10,4 @@ indent: mattd.c
 	$(INDENT) $(INDENTFLAGS) mattd.c
 
 clean:
-	rm -f *.o mattd
+	rm -f *.o mattd *.c.BAK
